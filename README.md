@@ -4,8 +4,13 @@ Landing Page "Award-Winning" (nível Awwwards) para exibir lista de vazamentos d
 
 ## 🚀 Tecnologias
 
+### Stack Principal
+- ✅ **React 18** - Biblioteca UI
+- ✅ **Vite** - Build tool e dev server
+- ✅ **TypeScript** - Tipagem estática
+- ✅ **Tailwind CSS** - Framework CSS utility-first
+
 ### Estilo e Arquitetura Visual
-- ✅ **Tailwind CSS** - Framework base
 - ✅ **tailwindcss-animate** - Animações keyframes
 - ✅ **@tailwindcss/typography** - Estilização de textos longos (prose)
 - ✅ **class-variance-authority (CVA)** - Variantes de componentes
@@ -32,6 +37,11 @@ Landing Page "Award-Winning" (nível Awwwards) para exibir lista de vazamentos d
 ### Integridade de Dados
 - ✅ **zod** - Validação de schemas
 
+### Deploy e Analytics
+- ✅ **Vercel** - Plataforma de deploy
+- ✅ **@vercel/analytics** - Analytics da Vercel
+- ✅ **@vercel/speed-insights** - Speed Insights da Vercel
+
 ## 📦 Instalação
 
 ```bash
@@ -44,27 +54,46 @@ npm install
 npm run dev
 ```
 
-Abra [http://localhost:3000](http://localhost:3000) no navegador.
+Abra [http://localhost:5173](http://localhost:5173) no navegador.
+
+## 🚀 Deploy na Vercel
+
+Este projeto está configurado para deploy na Vercel:
+
+1. **Conecte seu repositório** na Vercel
+2. A Vercel detectará automaticamente o framework Vite
+3. **Analytics e Speed Insights** já estão habilitados no código
+
+### Configuração Vercel
+
+O arquivo `vercel.json` está configurado com:
+- Build command: `npm run build`
+- Output directory: `dist`
+- Framework: `vite`
+
+### Analytics e Speed Insights
+
+Os componentes `Analytics` e `SpeedInsights` estão importados em `src/main.tsx` e serão automaticamente habilitados quando o projeto for deployado na Vercel.
 
 ## 📁 Estrutura do Projeto
 
 ```
 .
-├── app/
-│   ├── layout.tsx          # Layout principal com fontes
-│   ├── page.tsx            # Página inicial
-│   ├── providers.tsx       # Providers (Sonner, etc)
-│   └── globals.css         # Estilos globais Tailwind
-├── components/
-│   └── ui/                 # Componentes shadcn-ui
-│       ├── button.tsx
-│       └── card.tsx
-├── lib/
-│   ├── utils.ts            # Utilitários (cn function)
-│   ├── schemas/            # Schemas Zod
-│   │   └── data-breach.ts
-│   └── smooth-scroll.tsx   # Smooth scroll com Lenis
-└── tailwind.config.ts       # Configuração Tailwind
+├── src/
+│   ├── components/
+│   │   └── ui/          # Componentes shadcn-ui
+│   ├── lib/
+│   │   ├── schemas/     # Schemas Zod
+│   │   ├── utils.ts     # Utilitários (cn function)
+│   │   └── smooth-scroll.tsx
+│   ├── App.tsx          # Componente principal
+│   ├── main.tsx         # Entry point (com Analytics e Speed Insights)
+│   └── index.css        # Estilos globais Tailwind
+├── index.html
+├── vite.config.ts       # Configuração Vite
+├── tailwind.config.ts   # Configuração Tailwind
+├── tsconfig.json        # Configuração TypeScript
+└── vercel.json          # Configuração Vercel
 ```
 
 ## 🎯 Próximos Passos
@@ -78,7 +107,7 @@ Abra [http://localhost:3000](http://localhost:3000) no navegador.
 
 ## 📝 Schema de Dados
 
-O schema Zod está em `lib/schemas/data-breach.ts` e valida:
+O schema Zod está em `src/lib/schemas/data-breach.ts` e valida:
 
 - `id`: Identificador único
 - `name`: Nome da casa de aposta (obrigatório)
@@ -132,5 +161,4 @@ const cardVariants = cva("base-class", {
 
 ---
 
-**Status**: ✅ Projeto inicializado e configurado com todas as dependências!
-
+**Status**: ✅ Projeto React + Vite configurado e pronto para deploy na Vercel com Analytics e Speed Insights!

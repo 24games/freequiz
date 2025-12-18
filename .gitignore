@@ -30,6 +30,11 @@ yarn-error.log*
 # vercel
 .vercel
 
+# Vite
+dist
+dist-ssr
+*.local
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
