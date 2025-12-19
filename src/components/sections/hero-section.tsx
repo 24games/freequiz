@@ -89,17 +89,26 @@ export function HeroSection({ onStartQuiz, onPlatformChoice }: HeroSectionProps)
         </motion.div>
       </div>
 
-      {/* Seção da Imagem - Ocupa toda largura, sem padding lateral e sem margem inferior */}
+      {/* Seção da Imagem - Container com max-height para cortar a base */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}
         className="relative z-10 w-full mt-4 sm:mt-6 md:mt-8 mb-0"
+        style={{
+          maxHeight: '500px',
+          overflow: 'hidden',
+          display: 'flex',
+          alignItems: 'flex-end',
+        }}
       >
         <img
           src="/textos-vicente-imagens-no-ombro.webp"
           alt="Vicente - Análisis Profesionales de Fútbol"
           className="w-full h-auto object-cover"
+          style={{
+            objectPosition: 'center top',
+          }}
         />
       </motion.div>
     </section>

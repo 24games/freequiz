@@ -80,7 +80,7 @@ export function QuizSection({ currentQuestion, onAnswer, chosenPlatform }: QuizS
   }
 
   return (
-    <section className="min-h-[100dvh] flex items-center justify-center relative px-4 sm:px-5 py-8 pt-24 sm:pt-28 md:pt-32 bg-black">
+    <section className="min-h-[100dvh] flex items-center justify-center relative px-4 sm:px-5 py-8 pt-24 sm:pt-28 md:pt-32 bg-black -mt-[60px] sm:-mt-[80px] md:-mt-[100px]">
       <Card className="max-w-lg w-full bg-zinc-900/80 backdrop-blur-xl border border-zinc-800 shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
         <CardContent className="p-6 sm:p-8 md:p-10 lg:p-12">
           {/* Progress Bar - Elegante e fina */}

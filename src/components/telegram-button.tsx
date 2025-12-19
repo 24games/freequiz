@@ -13,8 +13,8 @@ export function TelegramButton({ size = 'lg', className = '', slug = null, onCli
   const telegramUrl = getTelegramUrl(slug)
 
   // Design "gordinho" - Azul oficial do Telegram
-  // py-5 px-10, font-black, box-shadow direto no botão
-  const baseClasses = "bg-[#24A1DE] hover:bg-[#1E8FC7] text-white font-black text-xl uppercase tracking-wider rounded-full flex items-center justify-center gap-2 sm:gap-3 transition-all duration-300 hover:-translate-y-1 active:scale-95 py-5 px-10 border-0 outline-none focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 shadow-[0_0_25px_rgba(36,161,222,0.6)] animate-punchy"
+  // py-5 px-10, font-black, box-shadow direto no botão, animação ultra-rápida
+  const baseClasses = "bg-[#24A1DE] hover:bg-[#1E8FC7] text-white font-black text-xl uppercase tracking-wider rounded-full flex items-center justify-center gap-2 sm:gap-3 transition-all duration-300 hover:-translate-y-1 active:scale-95 py-5 px-10 border-0 outline-none focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 shadow-[0_0_25px_rgba(36,161,222,0.6)] animate-quick"
 
   const sizeClasses = {
     sm: 'text-lg px-8 py-4',
@@ -30,7 +30,9 @@ export function TelegramButton({ size = 'lg', className = '', slug = null, onCli
     <Button
       onClick={onClick}
       size={buttonSize}
+      variant={undefined}
       className={`${baseClasses} ${sizeClasses[size]} ${className}`}
+      style={{ backgroundColor: '#24A1DE' }}
     >
       <Send className="w-6 h-6 sm:w-7 sm:h-7 flex-shrink-0" />
       EMPEZAR AHORA
@@ -39,7 +41,9 @@ export function TelegramButton({ size = 'lg', className = '', slug = null, onCli
     <Button
       asChild
       size={buttonSize}
+      variant={undefined}
       className={`${baseClasses} ${sizeClasses[size]} ${className}`}
+      style={{ backgroundColor: '#24A1DE' }}
     >
       <a href={telegramUrl} target="_blank" rel="noopener noreferrer">
         <Send className="w-6 h-6 sm:w-7 sm:h-7 flex-shrink-0" />
