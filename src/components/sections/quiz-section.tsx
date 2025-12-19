@@ -1,12 +1,16 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { Card, CardContent } from '../ui/card'
 import { useState } from 'react'
-import { getWhatsAppUrl } from '@/config/whatsapp'
+import { useSlug } from '@/hooks/use-slug'
+import { trackLead } from '@/lib/meta-pixel'
 
 interface QuizSectionProps {
   currentQuestion: number
   onAnswer: (questionNum: number) => void
 }
+
+// URL oficial do grupo WhatsApp
+const WHATSAPP_GROUP_URL = 'https://chat.whatsapp.com/I7QZyc64ZHYIaCNvQMMnTs'
 
 const questions = [
   {
@@ -29,14 +33,18 @@ const questions = [
 export function QuizSection({ currentQuestion, onAnswer }: QuizSectionProps) {
   const currentQ = questions.find((q) => q.id === currentQuestion)
   const [selectedOption, setSelectedOption] = useState<string | null>(null)
+  const slug = useSlug()
 
   const handleOptionClick = (option: string) => {
     setSelectedOption(option)
     
     // Se for a última pergunta (pergunta 3), redireciona imediatamente para WhatsApp
     if (currentQ!.id === 3) {
-      const whatsappUrl = getWhatsAppUrl()
-      window.location.href = whatsappUrl
+      // Dispara evento Lead do Meta Pixel antes de redirecionar
+      trackLead(slug || undefined)
+      
+      // Redireciona para o grupo oficial do WhatsApp
+      window.location.href = WHATSAPP_GROUP_URL
       return
     }
     

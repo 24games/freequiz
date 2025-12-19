@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import { Toaster } from 'sonner'
 import { SmoothScroll } from './lib/smooth-scroll'
 import { Header } from './components/header'
@@ -6,11 +7,28 @@ import { StickyCTAButton } from './components/sticky-cta-button'
 import { HeroSection } from './components/sections/hero-section'
 import { QuizSection } from './components/sections/quiz-section'
 import { Footer } from './components/sections/footer'
+import { trackPageView } from './lib/meta-pixel'
 import './index.css'
 
-function App() {
+// Lista de slugs válidos
+const VALID_SLUGS = [
+  'cr1-a1f1', 'cr2-a1f1', 'cr3-a1f1',
+  'cr1-a1f2', 'cr2-a1f2', 'cr3-a1f2',
+  'cr1-a3f1', 'cr2-a3f1', 'cr3-a3f1',
+  'cr1-a3f2', 'cr2-a3f2', 'cr3-a3f2',
+  'cr1-a6f1', 'cr2-a6f1', 'cr3-a6f1',
+  'cr1-a7f1', 'cr2-a7f1', 'cr3-a7f1',
+]
+
+function LandingPage() {
   const [currentSection, setCurrentSection] = useState<'hero' | 'quiz'>('hero')
   const [currentQuestion, setCurrentQuestion] = useState(1)
+  const location = useLocation()
+
+  // Track page view quando a rota muda
+  useEffect(() => {
+    trackPageView()
+  }, [location.pathname])
 
   const handleStartQuiz = () => {
     setCurrentSection('quiz')
@@ -52,6 +70,23 @@ function App() {
         <Toaster position="top-center" className="sm:top-right" />
       </div>
     </SmoothScroll>
+  )
+}
+
+function App() {
+  return (
+    <Routes>
+      {/* Rota principal */}
+      <Route path="/" element={<LandingPage />} />
+      
+      {/* Rotas dinâmicas para slugs válidos */}
+      {VALID_SLUGS.map((slug) => (
+        <Route key={slug} path={`/${slug}`} element={<LandingPage />} />
+      ))}
+      
+      {/* Fallback: qualquer outra rota também renderiza a landing page */}
+      <Route path="*" element={<LandingPage />} />
+    </Routes>
   )
 }
 
