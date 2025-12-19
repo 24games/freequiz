@@ -48,16 +48,36 @@ export function HeroSection({ onStartQuiz }: HeroSectionProps) {
 
           {/* Main Heading com destaque em verde */}
           <motion.h1
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight mb-8 md:mb-10 px-2 text-white"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black leading-tight mb-4 md:mb-6 px-2 text-white"
+            style={{
+              textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 8px rgba(0, 0, 0, 0.5)',
+            }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
           >
-            Únete al Grupo{' '}
-            <span className="text-[#22c55e]">Gratis</span>
-            {' '}de Análisis{' '}
-            <span className="text-[#22c55e]">Profesionales de Fútbol</span>
+            Gana{' '}
+            <span className="text-[#22c55e]" style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 8px rgba(34, 197, 94, 0.3)' }}>
+              100 lucas
+            </span>
+            {' '}todos los días en mi grupo profesional de{' '}
+            <span className="text-[#22c55e]" style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 8px rgba(34, 197, 94, 0.3)' }}>
+              análisis de fútbol
+            </span>
           </motion.h1>
+
+          {/* Sub-headline */}
+          <motion.p
+            className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 mb-8 md:mb-10 px-4 max-w-3xl mx-auto leading-relaxed"
+            style={{
+              textShadow: '1px 1px 2px rgba(0, 0, 0, 0.6)',
+            }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.35 }}
+          >
+            Sin vueltas, solo señales de alta efectividad enviadas directamente a tu celular.
+          </motion.p>
 
           {/* CTA Button */}
           <motion.div
