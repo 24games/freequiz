@@ -8,9 +8,10 @@ interface CTAButtonProps {
   className?: string
   animate?: boolean
   onClick?: () => void
+  onPlatformChoice?: (platform: 'telegram' | 'wpp') => void
 }
 
-export function CTAButton({ size = 'lg', className = '', animate = false, onClick }: CTAButtonProps) {
+export function CTAButton({ size = 'lg', className = '', animate = false, onClick, onPlatformChoice }: CTAButtonProps) {
   const { platform, slug } = usePlatform()
 
   // Debug: log para diagnóstico
@@ -29,9 +30,9 @@ export function CTAButton({ size = 'lg', className = '', animate = false, onClic
     return <TelegramButton size={size} className={className} animate={animate} slug={slug} onClick={onClick} />
   }
 
-  // Se platform === 'telegramwpp', mostrar AMBOS os botões
+  // Se platform === 'telegramwpp', mostrar AMBOS os botões com função de escolha
   if (platform === 'telegramwpp') {
-    return <PlatformChoice slug={slug} animate={animate} onChoose={onClick} />
+    return <PlatformChoice slug={slug} animate={animate} onChoose={onClick} onPlatformChoice={onPlatformChoice} />
   }
 
   // Fallback: Se não houver plataforma definida, usa Telegram como padrão

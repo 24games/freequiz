@@ -6,15 +6,26 @@ interface PlatformChoiceProps {
   slug?: string | null
   onChoose?: () => void
   animate?: boolean
+  onPlatformChoice?: (platform: 'telegram' | 'wpp') => void
 }
 
-export function PlatformChoice({ slug = null, onChoose, animate = false }: PlatformChoiceProps) {
+export function PlatformChoice({ slug = null, onChoose, animate = false, onPlatformChoice }: PlatformChoiceProps) {
   const handleTelegramClick = () => {
-    if (onChoose) onChoose()
+    // Salva a escolha e faz scroll suave até o quiz
+    if (onPlatformChoice) {
+      onPlatformChoice('telegram')
+    } else if (onChoose) {
+      onChoose()
+    }
   }
 
   const handleWhatsAppClick = () => {
-    if (onChoose) onChoose()
+    // Salva a escolha e faz scroll suave até o quiz
+    if (onPlatformChoice) {
+      onPlatformChoice('wpp')
+    } else if (onChoose) {
+      onChoose()
+    }
   }
 
   return (

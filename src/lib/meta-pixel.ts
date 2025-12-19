@@ -15,8 +15,10 @@ declare global {
 
 /**
  * Dispara evento Lead do Meta Pixel
+ * @param slug - Slug da URL (opcional)
+ * @param platform - Plataforma escolhida pelo usuário (opcional)
  */
-export function trackLead(slug?: string) {
+export function trackLead(slug?: string, platform?: string) {
   if (typeof window !== 'undefined' && window.fbq) {
     const params: Record<string, unknown> = {}
     
@@ -24,7 +26,16 @@ export function trackLead(slug?: string) {
       params.content_name = slug
     }
     
+    if (platform) {
+      params.platform = platform
+    }
+    
     window.fbq('track', 'Lead', params)
+    
+    // Debug log
+    if (import.meta.env.DEV) {
+      console.log('📊 Meta Pixel - Lead event fired:', params)
+    }
   }
 }
 

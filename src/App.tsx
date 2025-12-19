@@ -8,6 +8,7 @@ import { HeroSection } from './components/sections/hero-section'
 import { QuizSection } from './components/sections/quiz-section'
 import { Footer } from './components/sections/footer'
 import { trackPageView } from './lib/meta-pixel'
+import { usePlatformPreference } from './hooks/use-platform-preference'
 import './index.css'
 
 // Lista de slugs válidos
@@ -27,6 +28,7 @@ function LandingPage() {
   const [currentSection, setCurrentSection] = useState<'hero' | 'quiz'>('hero')
   const [currentQuestion, setCurrentQuestion] = useState(1)
   const location = useLocation()
+  const { chosenPlatform, choosePlatform } = usePlatformPreference()
 
   // Track page view quando a rota muda
   useEffect(() => {
@@ -36,6 +38,14 @@ function LandingPage() {
   const handleStartQuiz = () => {
     setCurrentSection('quiz')
     setCurrentQuestion(1)
+    
+    // Scroll suave até a seção do quiz
+    setTimeout(() => {
+      const quizSection = document.getElementById('quiz-section')
+      if (quizSection) {
+        quizSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+    }, 100)
   }
 
   const handleAnswer = (questionNum: number) => {
@@ -47,6 +57,14 @@ function LandingPage() {
     // Se for a última pergunta, o redirecionamento é feito diretamente no QuizSection
   }
 
+  // Função para lidar com a escolha de plataforma (com scroll suave)
+  const handlePlatformChoice = (platform: 'telegram' | 'wpp') => {
+    choosePlatform(platform)
+    
+    // Scroll suave até o quiz
+    handleStartQuiz()
+  }
+
   return (
     <SmoothScroll>
       <div className="min-h-screen bg-black text-white font-sans overflow-x-hidden relative" style={{ backgroundColor: '#000000' }}>
@@ -54,15 +72,22 @@ function LandingPage() {
         <Header />
         
         {currentSection === 'hero' && (
-          <HeroSection onStartQuiz={handleStartQuiz} />
+          <HeroSection 
+            onStartQuiz={handleStartQuiz}
+            onPlatformChoice={handlePlatformChoice}
+            chosenPlatform={chosenPlatform}
+          />
         )}
 
         {currentSection === 'quiz' && (
           <>
-            <QuizSection
-              currentQuestion={currentQuestion}
-              onAnswer={handleAnswer}
-            />
+            <div id="quiz-section">
+              <QuizSection
+                currentQuestion={currentQuestion}
+                onAnswer={handleAnswer}
+                chosenPlatform={chosenPlatform}
+              />
+            </div>
             <Footer />
           </>
         )}

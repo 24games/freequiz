@@ -4,16 +4,18 @@ import { CTAButton } from '../cta-button'
 
 interface HeroSectionProps {
   onStartQuiz: () => void
+  onPlatformChoice?: (platform: 'telegram' | 'wpp') => void
+  chosenPlatform?: 'telegram' | 'wpp' | null
 }
 
-export function HeroSection({ onStartQuiz }: HeroSectionProps) {
+export function HeroSection({ onStartQuiz, onPlatformChoice }: HeroSectionProps) {
   // O botão deve iniciar o quiz (não redirecionar diretamente)
   const handleButtonClick = () => {
     onStartQuiz()
   }
 
   return (
-    <section className="min-h-[100dvh] flex flex-col items-center justify-center relative overflow-hidden bg-black">
+    <section className="h-auto min-h-[80vh] flex flex-col items-center justify-start relative overflow-hidden bg-black pb-4 sm:pb-6 md:pb-8">
       {/* Background imersivo com radial gradient */}
       <div 
         className="absolute inset-0 z-0"
@@ -30,7 +32,7 @@ export function HeroSection({ onStartQuiz }: HeroSectionProps) {
 
       {/* Container superior com conteúdo centralizado (badge, título, botão) */}
       {/* Padding-top compensa o header fixo (h-16 sm:h-20 md:h-24) */}
-      <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10 w-full max-w-5xl flex flex-col items-center justify-center pt-24 sm:pt-28 md:pt-32">
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10 w-full max-w-5xl flex flex-col items-center justify-start pt-24 sm:pt-28 md:pt-32">
         <motion.div
           className="text-center w-full flex flex-col items-center"
           initial={{ opacity: 0, y: 20 }}
@@ -52,7 +54,7 @@ export function HeroSection({ onStartQuiz }: HeroSectionProps) {
 
           {/* Main Heading com destaque em verde */}
           <motion.h1
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black leading-tight mb-4 md:mb-6 px-2 text-white"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black leading-tight mb-6 sm:mb-8 md:mb-10 px-2 text-white"
             style={{
               textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 8px rgba(0, 0, 0, 0.5)',
             }}
@@ -70,38 +72,30 @@ export function HeroSection({ onStartQuiz }: HeroSectionProps) {
             </span>
           </motion.h1>
 
-          {/* Sub-headline */}
-          <motion.p
-            className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 mb-8 md:mb-10 px-4 max-w-3xl mx-auto leading-relaxed"
-            style={{
-              textShadow: '1px 1px 2px rgba(0, 0, 0, 0.6)',
-            }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.35 }}
-          >
-            Sin vueltas, solo señales de alta efectividad enviadas directamente a tu celular.
-          </motion.p>
-
           {/* CTA Button - Usa CTAButton mas com onClick para iniciar quiz */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="mb-12 md:mb-16 flex justify-center bg-transparent"
+            className="mb-4 sm:mb-6 md:mb-8 flex justify-center bg-transparent"
             style={{ backgroundColor: 'transparent' }}
           >
-            <CTAButton size="lg" animate onClick={handleButtonClick} />
+            <CTAButton 
+              size="lg" 
+              animate 
+              onClick={handleButtonClick}
+              onPlatformChoice={onPlatformChoice}
+            />
           </motion.div>
         </motion.div>
       </div>
 
-      {/* Seção da Imagem - Ocupa toda largura, sem padding lateral */}
+      {/* Seção da Imagem - Ocupa toda largura, sem padding lateral e sem margem inferior */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}
-        className="relative z-10 w-full mt-auto"
+        className="relative z-10 w-full mt-4 sm:mt-6 md:mt-8 mb-0"
       >
         <img
           src="/textos-vicente-imagens-no-ombro.webp"
