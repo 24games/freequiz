@@ -12,8 +12,8 @@ export function WhatsAppButton({ size = 'lg', className = '', onClick }: WhatsAp
   const whatsappUrl = getWhatsAppUrl()
 
   // Design "gordinho" - Verde do WhatsApp
-  // py-5 px-10, font-black, box-shadow direto no botão, animação ultra-rápida
-  const baseClasses = "bg-[#22c55e] hover:bg-[#16a34a] text-white font-black text-xl uppercase tracking-wider rounded-full flex items-center justify-center gap-2 sm:gap-3 transition-all duration-300 hover:-translate-y-1 active:scale-95 py-5 px-10 border-0 outline-none focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 shadow-[0_0_25px_rgba(34,197,94,0.6)] animate-quick"
+  // py-4 px-8, font-black, box-shadow suave direto no botão
+  const baseClasses = "bg-[#22c55e] hover:bg-[#16a34a] text-white font-black text-xl uppercase tracking-wider rounded-full flex items-center justify-center gap-2 sm:gap-3 transition-all duration-300 hover:-translate-y-1 active:scale-95 py-4 px-8 border-0 outline-none focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 shadow-[0_0_20px_rgba(34,197,94,0.5)] animate-simple-pulse"
 
   const sizeClasses = {
     sm: 'text-lg px-8 py-4',
@@ -51,13 +51,7 @@ export function WhatsAppButton({ size = 'lg', className = '', onClick }: WhatsAp
     </Button>
   )
 
-  // Container totalmente transparente, sem bordas pretas
-  const button = (
-    <div className="inline-block bg-transparent" style={{ backgroundColor: 'transparent' }}>
-      {buttonContent}
-    </div>
-  )
-
-  return button
+  // Retornar botão diretamente, sem container extra
+  return buttonContent
 }
 

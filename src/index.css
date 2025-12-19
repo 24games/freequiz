@@ -101,20 +101,20 @@
   }
 }
 
-/* Animação de pulso ultra-rápida (sem delay) */
-@keyframes quick-pulse {
+/* Animação de pulso simples (1s, sem delays) */
+@keyframes simple-pulse {
   0% { 
     transform: scale(1); 
   }
   50% { 
-    transform: scale(1.04); 
+    transform: scale(1.05); 
   }
   100% { 
     transform: scale(1); 
   }
 }
 
-.animate-quick {
-  animation: quick-pulse 0.8s infinite linear;
+.animate-simple-pulse {
+  animation: simple-pulse 1s infinite ease-in-out;
 }
 
