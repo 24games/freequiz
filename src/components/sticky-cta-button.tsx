@@ -29,8 +29,8 @@ export function StickyCTAButton() {
           transition={{ duration: 0.3, ease: 'easeOut' }}
           className="fixed bottom-0 left-0 right-0 z-50 px-4 py-3 sm:py-4 bg-black/90 sm:bg-black/80 backdrop-blur-xl border-t border-green-500/20"
         >
-          <div className="container mx-auto max-w-6xl">
-            <div className="w-full sm:w-auto mx-auto">
+          <div className="container mx-auto max-w-6xl bg-transparent">
+            <div className="w-full sm:w-auto mx-auto bg-transparent" style={{ backgroundColor: 'transparent' }}>
               <CTAButton size="lg" className="w-full sm:w-auto mx-auto" />
             </div>
           </div>

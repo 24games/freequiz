@@ -88,7 +88,8 @@ export function HeroSection({ onStartQuiz }: HeroSectionProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="mb-12 md:mb-16 flex justify-center"
+            className="mb-12 md:mb-16 flex justify-center bg-transparent"
+            style={{ backgroundColor: 'transparent' }}
           >
             <CTAButton size="lg" animate onClick={handleButtonClick} />
           </motion.div>

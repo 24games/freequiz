@@ -15,7 +15,8 @@ export function WhatsAppButton({ size = 'lg', className = '', animate = false, o
 
   // Design "gordinho" - Verde do WhatsApp
   // Mesma altura, mesmo padding, mesmo arredondamento, mesma fonte
-  const baseClasses = "bg-[#22c55e] hover:bg-[#16a34a] text-white font-black text-xl uppercase tracking-wider rounded-full flex items-center justify-center gap-2 sm:gap-3 transition-all duration-300 hover:-translate-y-1 active:scale-95 py-5 px-8"
+  // Removido border, outline e ring para evitar bordas pretas
+  const baseClasses = "bg-[#22c55e] hover:bg-[#16a34a] text-white font-black text-xl uppercase tracking-wider rounded-full flex items-center justify-center gap-2 sm:gap-3 transition-all duration-300 hover:-translate-y-1 active:scale-95 py-5 px-8 border-0 outline-none focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 shadow-[0_0_25px_rgba(34,197,94,0.5)]"
 
   const sizeClasses = {
     sm: 'text-lg px-8 py-4',
@@ -49,14 +50,10 @@ export function WhatsAppButton({ size = 'lg', className = '', animate = false, o
     </Button>
   )
 
-  // Wrapper com animação pulsante de escala e shadow pulse - Verde do WhatsApp
+  // Wrapper com animação pulsante apenas na escala (sem alterar opacidade)
+  // Removido filter drop-shadow e box-shadow animado para evitar bordas pretas
   const pulseAnimation = {
     scale: [1, 1.05, 1],
-    boxShadow: [
-      '0 0 20px rgba(34, 197, 94, 0.6)',
-      '0 0 40px rgba(34, 197, 94, 0.8)',
-      '0 0 20px rgba(34, 197, 94, 0.6)',
-    ],
   }
 
   const button = (
@@ -67,9 +64,9 @@ export function WhatsAppButton({ size = 'lg', className = '', animate = false, o
         repeat: Infinity,
         ease: 'easeInOut',
       }}
-      className="inline-block"
+      className="inline-block bg-transparent"
       style={{
-        filter: 'drop-shadow(0 0 20px rgba(34, 197, 94, 0.6))',
+        backgroundColor: 'transparent',
       }}
     >
       {buttonContent}
