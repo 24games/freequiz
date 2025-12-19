@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { usePlatform } from '@/hooks/use-platform'
 import { trackLead } from '@/lib/meta-pixel'
 import { getTelegramUrl } from '@/config/telegram'
-import { getWhatsAppUrl } from '@/config/whatsapp'
 import { PlatformChoice } from '../platform-choice'
 
 interface QuizSectionProps {
@@ -44,25 +43,36 @@ export function QuizSection({ currentQuestion, onAnswer }: QuizSectionProps) {
       // Dispara evento Lead do Meta Pixel antes de redirecionar
       trackLead(slug || undefined)
       
-      // Redireciona baseado na plataforma
+      // Debug: log para diagnóstico
+      if (typeof window !== 'undefined' && import.meta.env.DEV) {
+        console.log('🎯 Quiz - Redirecionando | Platform:', platform, '| Slug:', slug)
+      }
+      
+      // Redirecionamento com links fixos
+      // Se platform === 'wpp', redireciona APENAS para WhatsApp (link fixo)
       if (platform === 'wpp') {
-        const whatsappUrl = getWhatsAppUrl()
+        const whatsappUrl = 'https://chat.whatsapp.com/I7QZyc64ZHYIaCNvQMMnTs'
         window.location.href = whatsappUrl
         return
-      } else if (platform === 'telegram') {
-        const telegramUrl = getTelegramUrl(slug)
-        window.location.href = telegramUrl
-        return
-      } else if (platform === 'telegramwpp') {
-        // Mostra tela de escolha de plataforma
-        setShowPlatformChoice(true)
-        return
-      } else {
-        // Fallback: redireciona para Telegram
+      }
+      
+      // Se platform === 'telegram', redireciona APENAS para Telegram
+      if (platform === 'telegram') {
         const telegramUrl = getTelegramUrl(slug)
         window.location.href = telegramUrl
         return
       }
+      
+      // Se platform === 'telegramwpp', mostra tela de escolha de plataforma
+      if (platform === 'telegramwpp') {
+        setShowPlatformChoice(true)
+        return
+      }
+      
+      // Fallback: redireciona para Telegram
+      const telegramUrl = getTelegramUrl(slug)
+      window.location.href = telegramUrl
+      return
     }
     
     // Para outras perguntas, continua o fluxo normal

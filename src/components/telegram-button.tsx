@@ -14,14 +14,15 @@ interface TelegramButtonProps {
 export function TelegramButton({ size = 'lg', className = '', animate = false, slug = null, onClick }: TelegramButtonProps) {
   const telegramUrl = getTelegramUrl(slug)
 
-  // Design "gordinho" com padding aumentado e fonte maior - Azul oficial do Telegram
-  const baseClasses = "bg-[#24A1DE] hover:bg-[#1E8FC7] text-white font-black uppercase tracking-wider rounded-full flex items-center justify-center gap-2 sm:gap-3 transition-all duration-300 hover:-translate-y-1 active:scale-95"
+  // Design "gordinho" idêntico ao WhatsApp - Azul oficial do Telegram
+  // Mesma altura, mesmo padding, mesmo arredondamento, mesma fonte
+  const baseClasses = "bg-[#24A1DE] hover:bg-[#1E8FC7] text-white font-black text-xl uppercase tracking-wider rounded-full flex items-center justify-center gap-2 sm:gap-3 transition-all duration-300 hover:-translate-y-1 active:scale-95 py-5 px-8"
 
   const sizeClasses = {
     sm: 'text-lg px-8 py-4',
-    md: 'text-xl px-10 py-5',
-    lg: 'text-xl sm:text-2xl px-10 sm:px-12 md:px-14 py-5 sm:py-6',
-    xl: 'text-2xl sm:text-3xl px-12 sm:px-16 md:px-20 py-6 sm:py-7 md:py-8'
+    md: 'text-xl px-8 py-5',
+    lg: 'text-xl px-8 py-5',
+    xl: 'text-xl px-8 py-5'
   }
 
   // Mapear tamanhos customizados para tamanhos aceitos pelo Button
