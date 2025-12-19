@@ -20,6 +20,9 @@ const VALID_SLUGS = [
   'cr1-a7f1', 'cr2-a7f1', 'cr3-a7f1',
 ]
 
+// Lista de plataformas válidas
+const VALID_PLATFORMS = ['telegram', 'wpp', 'telegramwpp']
+
 function LandingPage() {
   const [currentSection, setCurrentSection] = useState<'hero' | 'quiz'>('hero')
   const [currentQuestion, setCurrentQuestion] = useState(1)
@@ -79,7 +82,18 @@ function App() {
       {/* Rota principal */}
       <Route path="/" element={<LandingPage />} />
       
-      {/* Rotas dinâmicas para slugs válidos */}
+      {/* Rotas dinâmicas aninhadas: /:platform/:slug */}
+      {VALID_PLATFORMS.map((platform) => (
+        VALID_SLUGS.map((slug) => (
+          <Route 
+            key={`${platform}-${slug}`} 
+            path={`/${platform}/${slug}`} 
+            element={<LandingPage />} 
+          />
+        ))
+      ))}
+      
+      {/* Rotas dinâmicas para slugs válidos (sem plataforma - fallback para Telegram) */}
       {VALID_SLUGS.map((slug) => (
         <Route key={slug} path={`/${slug}`} element={<LandingPage />} />
       ))}

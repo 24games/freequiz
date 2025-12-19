@@ -1,9 +1,11 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { Card, CardContent } from '../ui/card'
 import { useState } from 'react'
-import { useSlug } from '@/hooks/use-slug'
+import { usePlatform } from '@/hooks/use-platform'
 import { trackLead } from '@/lib/meta-pixel'
 import { getTelegramUrl } from '@/config/telegram'
+import { getWhatsAppUrl } from '@/config/whatsapp'
+import { PlatformChoice } from '../platform-choice'
 
 interface QuizSectionProps {
   currentQuestion: number
@@ -31,20 +33,36 @@ const questions = [
 export function QuizSection({ currentQuestion, onAnswer }: QuizSectionProps) {
   const currentQ = questions.find((q) => q.id === currentQuestion)
   const [selectedOption, setSelectedOption] = useState<string | null>(null)
-  const slug = useSlug()
+  const [showPlatformChoice, setShowPlatformChoice] = useState(false)
+  const { platform, slug } = usePlatform()
 
   const handleOptionClick = (option: string) => {
     setSelectedOption(option)
     
-    // Se for a última pergunta (pergunta 3), redireciona imediatamente para Telegram
+    // Se for a última pergunta (pergunta 3), redireciona baseado na plataforma
     if (currentQ!.id === 3) {
       // Dispara evento Lead do Meta Pixel antes de redirecionar
       trackLead(slug || undefined)
       
-      // Redireciona para o bot do Telegram baseado no slug
-      const telegramUrl = getTelegramUrl(slug)
-      window.location.href = telegramUrl
-      return
+      // Redireciona baseado na plataforma
+      if (platform === 'wpp') {
+        const whatsappUrl = getWhatsAppUrl()
+        window.location.href = whatsappUrl
+        return
+      } else if (platform === 'telegram') {
+        const telegramUrl = getTelegramUrl(slug)
+        window.location.href = telegramUrl
+        return
+      } else if (platform === 'telegramwpp') {
+        // Mostra tela de escolha de plataforma
+        setShowPlatformChoice(true)
+        return
+      } else {
+        // Fallback: redireciona para Telegram
+        const telegramUrl = getTelegramUrl(slug)
+        window.location.href = telegramUrl
+        return
+      }
     }
     
     // Para outras perguntas, continua o fluxo normal
@@ -52,6 +70,19 @@ export function QuizSection({ currentQuestion, onAnswer }: QuizSectionProps) {
       onAnswer(currentQ!.id)
       setSelectedOption(null)
     }, 200)
+  }
+
+  // Se mostrar escolha de plataforma, renderiza isso
+  if (showPlatformChoice) {
+    return (
+      <section className="min-h-[100dvh] flex items-center justify-center relative px-4 sm:px-5 py-8 pt-24 sm:pt-28 md:pt-32 bg-black">
+        <Card className="max-w-lg w-full bg-zinc-900/80 backdrop-blur-xl border border-zinc-800 shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
+          <CardContent className="p-6 sm:p-8 md:p-10 lg:p-12">
+            <PlatformChoice slug={slug} />
+          </CardContent>
+        </Card>
+      </section>
+    )
   }
 
   return (

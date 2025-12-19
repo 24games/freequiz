@@ -42,3 +42,4 @@ export function getTelegramUrl(slug: string | null): string {
   return TELEGRAM_URLS[slug] || DEFAULT_TELEGRAM_URL
 }
 
+

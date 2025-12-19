@@ -1,12 +1,17 @@
 import { motion } from 'framer-motion'
-import { Button } from '../ui/button'
-import { Check, Send } from 'lucide-react'
+import { Check } from 'lucide-react'
+import { CTAButton } from '../cta-button'
 
 interface HeroSectionProps {
   onStartQuiz: () => void
 }
 
 export function HeroSection({ onStartQuiz }: HeroSectionProps) {
+  // O botão deve iniciar o quiz (não redirecionar diretamente)
+  const handleButtonClick = () => {
+    onStartQuiz()
+  }
+
   return (
     <section className="min-h-[100dvh] flex flex-col items-center justify-center relative overflow-hidden bg-black">
       {/* Background imersivo com radial gradient */}
@@ -75,39 +80,17 @@ export function HeroSection({ onStartQuiz }: HeroSectionProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.35 }}
           >
-            Sin vueltas, solo señales de alta efectividad enviadas directamente a tu Telegram.
+            Sin vueltas, solo señales de alta efectividad enviadas directamente a tu celular.
           </motion.p>
 
-          {/* CTA Button */}
+          {/* CTA Button - Usa CTAButton mas com onClick para iniciar quiz */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
             className="mb-12 md:mb-16 flex justify-center"
           >
-            <motion.div
-              animate={{
-                scale: [1, 1.05, 1],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              }}
-              className="inline-block"
-              style={{
-                filter: 'drop-shadow(0 0 20px rgba(36, 161, 222, 0.6))',
-              }}
-            >
-              <Button
-                onClick={onStartQuiz}
-                size="lg"
-                className="w-full sm:w-auto bg-[#24A1DE] hover:bg-[#1E8FC7] text-white font-black text-xl sm:text-2xl px-10 sm:px-12 md:px-14 py-5 sm:py-6 rounded-full uppercase tracking-wider transition-all duration-300 hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-2 sm:gap-3 mx-auto"
-              >
-                <Send className="w-6 h-6 sm:w-7 sm:h-7 flex-shrink-0" />
-                EMPEZAR AHORA
-              </Button>
-            </motion.div>
+            <CTAButton size="lg" animate onClick={handleButtonClick} />
           </motion.div>
         </motion.div>
       </div>
