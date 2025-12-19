@@ -78,7 +78,7 @@ export function HowItWorksSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <CTAButton size="lg" animate />
+          <CTAButton size="lg" />
         </motion.div>
       </div>
     </section>

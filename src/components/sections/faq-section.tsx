@@ -98,7 +98,7 @@ export function FAQSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <CTAButton size="xl" animate />
+          <CTAButton size="xl" />
         </motion.div>
       </div>
     </section>

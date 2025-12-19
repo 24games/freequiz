@@ -101,3 +101,20 @@
   }
 }
 
+/* Animação de pulso rápida e energética */
+@keyframes punchy-pulse {
+  0% { 
+    transform: scale(1); 
+  }
+  50% { 
+    transform: scale(1.05); 
+  }
+  100% { 
+    transform: scale(1); 
+  }
+}
+
+.animate-punchy {
+  animation: punchy-pulse 1.2s infinite ease-in-out;
+}
+

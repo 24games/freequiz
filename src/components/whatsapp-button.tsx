@@ -1,23 +1,19 @@
 import { Button } from './ui/button'
 import { FaWhatsapp } from 'react-icons/fa'
 import { getWhatsAppUrl } from '@/config/whatsapp'
-import { motion } from 'framer-motion'
 
 interface WhatsAppButtonProps {
   size?: 'sm' | 'md' | 'lg' | 'xl'
   className?: string
-  animate?: boolean
   onClick?: () => void
 }
 
-export function WhatsAppButton({ size = 'lg', className = '', animate = false, onClick }: WhatsAppButtonProps) {
+export function WhatsAppButton({ size = 'lg', className = '', onClick }: WhatsAppButtonProps) {
   const whatsappUrl = getWhatsAppUrl()
 
   // Design "gordinho" - Verde do WhatsApp
-  // Mesma altura, mesmo padding, mesmo arredondamento, mesma fonte
-  // Removido border, outline e ring para evitar bordas pretas
-  // Removido shadow estático da classe base pois será animado via Framer Motion
-  const baseClasses = "bg-[#22c55e] hover:bg-[#16a34a] text-white font-black text-xl uppercase tracking-wider rounded-full flex items-center justify-center gap-2 sm:gap-3 transition-all duration-300 hover:-translate-y-1 active:scale-95 py-5 px-8 border-0 outline-none focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0"
+  // py-5 px-10, font-black, box-shadow direto no botão
+  const baseClasses = "bg-[#22c55e] hover:bg-[#16a34a] text-white font-black text-xl uppercase tracking-wider rounded-full flex items-center justify-center gap-2 sm:gap-3 transition-all duration-300 hover:-translate-y-1 active:scale-95 py-5 px-10 border-0 outline-none focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 shadow-[0_0_25px_rgba(34,197,94,0.6)] animate-punchy"
 
   const sizeClasses = {
     sm: 'text-lg px-8 py-4',
@@ -51,46 +47,12 @@ export function WhatsAppButton({ size = 'lg', className = '', animate = false, o
     </Button>
   )
 
-  // Animação pulsante rápida e energética com shadow sincronizado
-  const pulseAnimation = {
-    scale: [1, 1.05, 1],
-    boxShadow: [
-      '0 0 25px rgba(34, 197, 94, 0.5)',
-      '0 0 40px rgba(34, 197, 94, 0.8)',
-      '0 0 25px rgba(34, 197, 94, 0.5)',
-    ],
-  }
-
+  // Container totalmente transparente, sem bordas pretas
   const button = (
-    <motion.div
-      animate={pulseAnimation}
-      transition={{
-        duration: 1.2,
-        repeat: Infinity,
-        ease: 'easeInOut',
-        repeatDelay: 0,
-      }}
-      className="inline-block bg-transparent"
-      style={{
-        backgroundColor: 'transparent',
-      }}
-    >
+    <div className="inline-block bg-transparent" style={{ backgroundColor: 'transparent' }}>
       {buttonContent}
-    </motion.div>
+    </div>
   )
-
-  if (animate) {
-    return (
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
-        {button}
-      </motion.div>
-    )
-  }
 
   return button
 }

@@ -5,11 +5,10 @@ import { WhatsAppButton } from './whatsapp-button'
 interface PlatformChoiceProps {
   slug?: string | null
   onChoose?: () => void
-  animate?: boolean
   onPlatformChoice?: (platform: 'telegram' | 'wpp') => void
 }
 
-export function PlatformChoice({ slug = null, onChoose, animate = false, onPlatformChoice }: PlatformChoiceProps) {
+export function PlatformChoice({ slug = null, onChoose, onPlatformChoice }: PlatformChoiceProps) {
   const handleTelegramClick = () => {
     // Salva a escolha e faz scroll suave até o quiz
     if (onPlatformChoice) {
@@ -44,11 +43,11 @@ export function PlatformChoice({ slug = null, onChoose, animate = false, onPlatf
       {/* Desktop: botões lado a lado (flex-row) | Mobile: botões empilhados (flex-col) */}
       <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-stretch sm:items-center justify-center w-full bg-transparent" style={{ backgroundColor: 'transparent' }}>
         <div className="flex-1 sm:flex-none w-full sm:w-auto bg-transparent" style={{ backgroundColor: 'transparent' }}>
-          <TelegramButton size="lg" className="w-full sm:w-auto" slug={slug} animate={animate} onClick={handleTelegramClick} />
+          <TelegramButton size="lg" className="w-full sm:w-auto" slug={slug} onClick={handleTelegramClick} />
         </div>
         
         <div className="flex-1 sm:flex-none w-full sm:w-auto bg-transparent" style={{ backgroundColor: 'transparent' }}>
-          <WhatsAppButton size="lg" className="w-full sm:w-auto" animate={animate} onClick={handleWhatsAppClick} />
+          <WhatsAppButton size="lg" className="w-full sm:w-auto" onClick={handleWhatsAppClick} />
         </div>
       </div>
     </motion.div>

@@ -15,7 +15,7 @@ export function HeroSection({ onStartQuiz, onPlatformChoice }: HeroSectionProps)
   }
 
   return (
-    <section className="h-auto min-h-[80vh] flex flex-col items-center justify-start relative overflow-hidden bg-black pb-4 sm:pb-6 md:pb-8">
+    <section className="h-auto flex flex-col items-center justify-start relative overflow-visible bg-black pb-4">
       {/* Background imersivo com radial gradient */}
       <div 
         className="absolute inset-0 z-0"
@@ -82,7 +82,6 @@ export function HeroSection({ onStartQuiz, onPlatformChoice }: HeroSectionProps)
           >
             <CTAButton 
               size="lg" 
-              animate 
               onClick={handleButtonClick}
               onPlatformChoice={onPlatformChoice}
             />

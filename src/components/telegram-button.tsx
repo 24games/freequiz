@@ -1,24 +1,20 @@
 import { Button } from './ui/button'
 import { Send } from 'lucide-react'
 import { getTelegramUrl } from '@/config/telegram'
-import { motion } from 'framer-motion'
 
 interface TelegramButtonProps {
   size?: 'sm' | 'md' | 'lg' | 'xl'
   className?: string
-  animate?: boolean
   slug?: string | null
   onClick?: () => void
 }
 
-export function TelegramButton({ size = 'lg', className = '', animate = false, slug = null, onClick }: TelegramButtonProps) {
+export function TelegramButton({ size = 'lg', className = '', slug = null, onClick }: TelegramButtonProps) {
   const telegramUrl = getTelegramUrl(slug)
 
-  // Design "gordinho" idêntico ao WhatsApp - Azul oficial do Telegram
-  // Mesma altura, mesmo padding, mesmo arredondamento, mesma fonte
-  // Removido border, outline e ring para evitar bordas pretas
-  // Removido shadow estático da classe base pois será animado via Framer Motion
-  const baseClasses = "bg-[#24A1DE] hover:bg-[#1E8FC7] text-white font-black text-xl uppercase tracking-wider rounded-full flex items-center justify-center gap-2 sm:gap-3 transition-all duration-300 hover:-translate-y-1 active:scale-95 py-5 px-8 border-0 outline-none focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0"
+  // Design "gordinho" - Azul oficial do Telegram
+  // py-5 px-10, font-black, box-shadow direto no botão
+  const baseClasses = "bg-[#24A1DE] hover:bg-[#1E8FC7] text-white font-black text-xl uppercase tracking-wider rounded-full flex items-center justify-center gap-2 sm:gap-3 transition-all duration-300 hover:-translate-y-1 active:scale-95 py-5 px-10 border-0 outline-none focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 shadow-[0_0_25px_rgba(36,161,222,0.6)] animate-punchy"
 
   const sizeClasses = {
     sm: 'text-lg px-8 py-4',
@@ -52,46 +48,12 @@ export function TelegramButton({ size = 'lg', className = '', animate = false, s
     </Button>
   )
 
-  // Animação pulsante rápida e energética com shadow sincronizado
-  const pulseAnimation = {
-    scale: [1, 1.05, 1],
-    boxShadow: [
-      '0 0 25px rgba(36, 161, 222, 0.5)',
-      '0 0 40px rgba(36, 161, 222, 0.8)',
-      '0 0 25px rgba(36, 161, 222, 0.5)',
-    ],
-  }
-
+  // Container totalmente transparente, sem bordas pretas
   const button = (
-    <motion.div
-      animate={pulseAnimation}
-      transition={{
-        duration: 1.2,
-        repeat: Infinity,
-        ease: 'easeInOut',
-        repeatDelay: 0,
-      }}
-      className="inline-block bg-transparent"
-      style={{
-        backgroundColor: 'transparent',
-      }}
-    >
+    <div className="inline-block bg-transparent" style={{ backgroundColor: 'transparent' }}>
       {buttonContent}
-    </motion.div>
+    </div>
   )
-
-  if (animate) {
-    return (
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
-        {button}
-      </motion.div>
-    )
-  }
 
   return button
 }
