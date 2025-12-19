@@ -1,27 +1,28 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { Card, CardContent } from '../ui/card'
 import { useState } from 'react'
+import { getWhatsAppUrl } from '@/config/whatsapp'
 
 interface QuizSectionProps {
   currentQuestion: number
-  onAnswer: (questionNum: number, answer: string) => void
+  onAnswer: (questionNum: number) => void
 }
 
 const questions = [
   {
     id: 1,
-    question: 'Você assiste futebol regularmente?',
-    options: ['Sim, sou fanático', 'Às vezes', 'Não muito'],
+    question: '¿Ves fútbol regularmente?',
+    options: ['Sí, soy fanático', 'A veces', 'No mucho'],
   },
   {
     id: 2,
-    question: 'Quanto você quer ganhar por mês?',
-    options: ['R$500 - R$2.000', 'R$2.000 - R$5.000', 'Mais de R$5.000'],
+    question: '¿Cuánto quieres ganar al mes?',
+    options: ['$50.000 - $200.000 CLP', '$200.000 - $500.000 CLP', 'Más de $500.000 CLP'],
   },
   {
     id: 3,
-    question: 'Pode começar hoje?',
-    options: ['Sim, agora', 'Nos próximos dias', 'Só estou pesquisando'],
+    question: '¿Puedes empezar hoy?',
+    options: ['Sí, ahora mismo', 'En los próximos días', 'Solo estoy viendo'],
   },
 ]
 
@@ -31,14 +32,23 @@ export function QuizSection({ currentQuestion, onAnswer }: QuizSectionProps) {
 
   const handleOptionClick = (option: string) => {
     setSelectedOption(option)
+    
+    // Se for a última pergunta (pergunta 3), redireciona imediatamente para WhatsApp
+    if (currentQ!.id === 3) {
+      const whatsappUrl = getWhatsAppUrl()
+      window.location.href = whatsappUrl
+      return
+    }
+    
+    // Para outras perguntas, continua o fluxo normal
     setTimeout(() => {
-      onAnswer(currentQ!.id, option)
+      onAnswer(currentQ!.id)
       setSelectedOption(null)
     }, 200)
   }
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative px-4 sm:px-5 py-8 pt-24 sm:pt-28 md:pt-32 bg-black">
+    <section className="min-h-[100dvh] flex items-center justify-center relative px-4 sm:px-5 py-8 pt-24 sm:pt-28 md:pt-32 bg-black">
       <Card className="max-w-lg w-full bg-zinc-900/80 backdrop-blur-xl border border-zinc-800 shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
         <CardContent className="p-6 sm:p-8 md:p-10 lg:p-12">
           {/* Progress Bar - Elegante e fina */}
@@ -93,21 +103,6 @@ export function QuizSection({ currentQuestion, onAnswer }: QuizSectionProps) {
             )}
           </AnimatePresence>
 
-          {/* Loading (shown after question 3) */}
-          {currentQuestion === 3 && (
-            <motion.div
-              className="text-center py-12 sm:py-16"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-            >
-              <motion.div
-                className="w-12 h-12 sm:w-16 sm:h-16 border-4 border-green-500/20 border-t-green-500 rounded-full mx-auto mb-6 sm:mb-8"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-              />
-              <p className="text-lg sm:text-xl text-white font-medium">Analisando seu perfil...</p>
-            </motion.div>
-          )}
         </CardContent>
       </Card>
     </section>

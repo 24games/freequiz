@@ -1,13 +1,13 @@
 /**
- * Configuração do WhatsApp
+ * Configuración de WhatsApp
  * 
- * IMPORTANTE: Substitua o número abaixo pelo número real do WhatsApp
- * Formato: código do país + DDD + número (sem espaços ou caracteres especiais)
- * Exemplo: 5511999999999 (Brasil: 55, DDD: 11, número: 999999999)
+ * IMPORTANTE: Reemplaza el número de abajo por el número real de WhatsApp
+ * Formato: código del país + número (sin espacios o caracteres especiales)
+ * Ejemplo: 56912345678 (Chile: 56, número: 912345678)
  */
 export const WHATSAPP_CONFIG = {
-  number: '5511999999999', // ⚠️ ALTERE AQUI
-  defaultMessage: 'Olá! Quero entrar no grupo Free de análises!',
+  number: '56912345678', // ⚠️ CAMBIA AQUÍ
+  defaultMessage: '¡Hola! Quiero entrar al grupo gratis de análisis!',
 }
 
 /**

@@ -30,19 +30,9 @@ export function StickyCTAButton() {
           className="fixed bottom-0 left-0 right-0 z-50 px-4 py-3 sm:py-4 bg-black/90 sm:bg-black/80 backdrop-blur-xl border-t border-green-500/20"
         >
           <div className="container mx-auto max-w-6xl">
-            <motion.div
-              animate={{
-                scale: [1, 1.03, 1],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              }}
-              className="w-full sm:w-auto mx-auto"
-            >
+            <div className="w-full sm:w-auto mx-auto">
               <CTAButton size="lg" className="w-full sm:w-auto mx-auto" />
-            </motion.div>
+            </div>
           </div>
         </motion.div>
       )}

@@ -9,7 +9,7 @@ interface HeroSectionProps {
 
 export function HeroSection({ onStartQuiz }: HeroSectionProps) {
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden">
+    <section className="min-h-[100dvh] flex flex-col items-center justify-center relative overflow-hidden bg-black">
       {/* Background imersivo com radial gradient */}
       <div 
         className="absolute inset-0 z-0"
@@ -43,7 +43,7 @@ export function HeroSection({ onStartQuiz }: HeroSectionProps) {
             <div className="w-5 h-5 md:w-6 md:h-6 bg-[#22c55e] rounded-full flex items-center justify-center flex-shrink-0">
               <Check className="w-3 h-3 md:w-4 md:h-4 text-black" />
             </div>
-            <span className="text-white whitespace-nowrap">Grupo 100% Gratuito</span>
+            <span className="text-white whitespace-nowrap">Grupo 100% Gratis</span>
           </motion.div>
 
           {/* Main Heading com destaque em verde */}
@@ -53,10 +53,10 @@ export function HeroSection({ onStartQuiz }: HeroSectionProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
           >
-            Entre no Grupo{' '}
-            <span className="text-[#22c55e]">Free</span>
-            {' '}de Análises de{' '}
-            <span className="text-[#22c55e]">Futebol Profissionais</span>
+            Únete al Grupo{' '}
+            <span className="text-[#22c55e]">Gratis</span>
+            {' '}de Análisis{' '}
+            <span className="text-[#22c55e]">Profesionales de Fútbol</span>
           </motion.h1>
 
           {/* CTA Button */}
@@ -66,14 +66,29 @@ export function HeroSection({ onStartQuiz }: HeroSectionProps) {
             transition={{ delay: 0.4 }}
             className="mb-12 md:mb-16 flex justify-center"
           >
-            <Button
-              onClick={onStartQuiz}
-              size="lg"
-              className="w-full sm:w-auto bg-[#22c55e] hover:bg-[#16a34a] text-white font-black text-sm sm:text-base md:text-lg lg:text-xl px-8 sm:px-12 md:px-16 py-4 sm:py-5 md:py-6 rounded-full uppercase tracking-wider shadow-lg shadow-[#22c55e]/50 hover:shadow-xl hover:shadow-[#22c55e]/60 transition-all duration-300 hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-2 sm:gap-3 mx-auto"
+            <motion.div
+              animate={{
+                scale: [1, 1.05, 1],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
+              className="inline-block"
+              style={{
+                filter: 'drop-shadow(0 0 20px rgba(34, 197, 94, 0.6))',
+              }}
             >
-              <FaWhatsapp className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0" />
-              QUERO ENTRAR NO GRUPO
-            </Button>
+              <Button
+                onClick={onStartQuiz}
+                size="lg"
+                className="w-full sm:w-auto bg-[#22c55e] hover:bg-[#16a34a] text-white font-black text-xl sm:text-2xl px-10 sm:px-12 md:px-14 py-5 sm:py-6 rounded-full uppercase tracking-wider transition-all duration-300 hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-2 sm:gap-3 mx-auto"
+              >
+                <FaWhatsapp className="w-6 h-6 sm:w-7 sm:h-7 flex-shrink-0" />
+                EMPEZAR AHORA
+              </Button>
+            </motion.div>
           </motion.div>
         </motion.div>
       </div>
@@ -87,7 +102,7 @@ export function HeroSection({ onStartQuiz }: HeroSectionProps) {
       >
         <img
           src="/textos-vicente-imagens-no-ombro.webp"
-          alt="Vicente - Análises de Futebol"
+          alt="Vicente - Análisis Profesionales de Fútbol"
           className="w-full h-auto object-cover"
         />
       </motion.div>
