@@ -1,6 +1,7 @@
 import { Button } from './ui/button'
-import { FaWhatsapp } from 'react-icons/fa'
-import { getWhatsAppUrl } from '@/config/whatsapp'
+import { Send } from 'lucide-react'
+import { getTelegramUrl } from '@/config/telegram'
+import { useSlug } from '@/hooks/use-slug'
 import { motion } from 'framer-motion'
 
 interface CTAButtonProps {
@@ -10,10 +11,11 @@ interface CTAButtonProps {
 }
 
 export function CTAButton({ size = 'lg', className = '', animate = false }: CTAButtonProps) {
-  const whatsappUrl = getWhatsAppUrl()
+  const slug = useSlug()
+  const telegramUrl = getTelegramUrl(slug)
 
-  // Design "gordinho" com padding aumentado e fonte maior
-  const baseClasses = "bg-[#22c55e] hover:bg-[#16a34a] text-white font-black uppercase tracking-wider rounded-full flex items-center justify-center gap-2 sm:gap-3 transition-all duration-300 hover:-translate-y-1 active:scale-95"
+  // Design "gordinho" com padding aumentado e fonte maior - Azul oficial do Telegram
+  const baseClasses = "bg-[#24A1DE] hover:bg-[#1E8FC7] text-white font-black uppercase tracking-wider rounded-full flex items-center justify-center gap-2 sm:gap-3 transition-all duration-300 hover:-translate-y-1 active:scale-95"
 
   const sizeClasses = {
     sm: 'text-lg px-8 py-4',
@@ -31,20 +33,20 @@ export function CTAButton({ size = 'lg', className = '', animate = false }: CTAB
       size={buttonSize}
       className={`${baseClasses} ${sizeClasses[size]} ${className}`}
     >
-      <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-        <FaWhatsapp className="w-6 h-6 sm:w-7 sm:h-7 flex-shrink-0" />
+      <a href={telegramUrl} target="_blank" rel="noopener noreferrer">
+        <Send className="w-6 h-6 sm:w-7 sm:h-7 flex-shrink-0" />
         EMPEZAR AHORA
       </a>
     </Button>
   )
 
-  // Wrapper com animação pulsante de escala e shadow pulse
+  // Wrapper com animação pulsante de escala e shadow pulse - Azul do Telegram
   const pulseAnimation = {
     scale: [1, 1.05, 1],
     boxShadow: [
-      '0 0 20px rgba(34, 197, 94, 0.6)',
-      '0 0 40px rgba(34, 197, 94, 0.8)',
-      '0 0 20px rgba(34, 197, 94, 0.6)',
+      '0 0 20px rgba(36, 161, 222, 0.6)',
+      '0 0 40px rgba(36, 161, 222, 0.8)',
+      '0 0 20px rgba(36, 161, 222, 0.6)',
     ],
   }
 
@@ -58,7 +60,7 @@ export function CTAButton({ size = 'lg', className = '', animate = false }: CTAB
       }}
       className="inline-block"
       style={{
-        filter: 'drop-shadow(0 0 20px rgba(34, 197, 94, 0.6))',
+        filter: 'drop-shadow(0 0 20px rgba(36, 161, 222, 0.6))',
       }}
     >
       {buttonContent}

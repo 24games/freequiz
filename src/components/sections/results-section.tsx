@@ -2,9 +2,9 @@ import { motion } from 'framer-motion'
 import { CTAButton } from '../cta-button'
 
 const results = [
-  { value: '2.847', label: 'Membros Ativos' },
-  { value: '73%', label: 'Taxa de Acerto' },
-  { value: '24/7', label: 'Análises Diárias' },
+  { value: '2.847', label: 'Miembros Activos' },
+  { value: '73%', label: 'Tasa de Acierto' },
+  { value: '24/7', label: 'Análisis Diarios' },
 ]
 
 export function ResultsSection() {
@@ -23,7 +23,7 @@ export function ResultsSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          Resultados Reais
+          Resultados Reales
         </motion.h2>
 
         {/* Desktop: flex-row | Mobile: carrossel horizontal com snap */}

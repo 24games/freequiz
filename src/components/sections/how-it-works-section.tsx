@@ -4,18 +4,18 @@ import { CTAButton } from '../cta-button'
 const steps = [
   {
     icon: '📱',
-    title: 'Entrou',
-    description: 'Acesso imediato ao grupo.',
+    title: 'Entró',
+    description: 'Acceso inmediato al canal VIP en Telegram.',
   },
   {
     icon: '📊',
-    title: 'Copiou',
-    description: 'Receba as análises com estatísticas.',
+    title: 'Copió',
+    description: 'Recibe los análisis con estadísticas.',
   },
   {
     icon: '💰',
-    title: 'Lucrou',
-    description: 'Basta seguir a gestão.',
+    title: 'Lucró',
+    description: 'Solo sigue la gestión.',
   },
 ]
 
@@ -35,7 +35,7 @@ export function HowItWorksSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          Como Funciona
+          Cómo Funciona
         </motion.h2>
 
         {/* Grid com 3 cards quadrados em linha horizontal */}

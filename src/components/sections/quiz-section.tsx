@@ -3,14 +3,12 @@ import { Card, CardContent } from '../ui/card'
 import { useState } from 'react'
 import { useSlug } from '@/hooks/use-slug'
 import { trackLead } from '@/lib/meta-pixel'
+import { getTelegramUrl } from '@/config/telegram'
 
 interface QuizSectionProps {
   currentQuestion: number
   onAnswer: (questionNum: number) => void
 }
-
-// URL oficial do grupo WhatsApp
-const WHATSAPP_GROUP_URL = 'https://chat.whatsapp.com/I7QZyc64ZHYIaCNvQMMnTs'
 
 const questions = [
   {
@@ -38,13 +36,14 @@ export function QuizSection({ currentQuestion, onAnswer }: QuizSectionProps) {
   const handleOptionClick = (option: string) => {
     setSelectedOption(option)
     
-    // Se for a última pergunta (pergunta 3), redireciona imediatamente para WhatsApp
+    // Se for a última pergunta (pergunta 3), redireciona imediatamente para Telegram
     if (currentQ!.id === 3) {
       // Dispara evento Lead do Meta Pixel antes de redirecionar
       trackLead(slug || undefined)
       
-      // Redireciona para o grupo oficial do WhatsApp
-      window.location.href = WHATSAPP_GROUP_URL
+      // Redireciona para o bot do Telegram baseado no slug
+      const telegramUrl = getTelegramUrl(slug)
+      window.location.href = telegramUrl
       return
     }
     

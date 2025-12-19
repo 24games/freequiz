@@ -11,7 +11,7 @@ export default defineConfig({
     },
   },
   server: {
-    host: 'localhost', // Mais confiável no Windows
+    host: '0.0.0.0', // Permite acesso de qualquer interface de rede
     port: 5173,
     strictPort: false, // Tenta a próxima porta se 5173 estiver ocupada
     open: true, // Abre o navegador automaticamente

@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion'
 import { Button } from '../ui/button'
-import { Check } from 'lucide-react'
-import { FaWhatsapp } from 'react-icons/fa'
+import { Check, Send } from 'lucide-react'
 
 interface HeroSectionProps {
   onStartQuiz: () => void
@@ -76,7 +75,7 @@ export function HeroSection({ onStartQuiz }: HeroSectionProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.35 }}
           >
-            Sin vueltas, solo señales de alta efectividad enviadas directamente a tu celular.
+            Sin vueltas, solo señales de alta efectividad enviadas directamente a tu Telegram.
           </motion.p>
 
           {/* CTA Button */}
@@ -97,15 +96,15 @@ export function HeroSection({ onStartQuiz }: HeroSectionProps) {
               }}
               className="inline-block"
               style={{
-                filter: 'drop-shadow(0 0 20px rgba(34, 197, 94, 0.6))',
+                filter: 'drop-shadow(0 0 20px rgba(36, 161, 222, 0.6))',
               }}
             >
               <Button
                 onClick={onStartQuiz}
                 size="lg"
-                className="w-full sm:w-auto bg-[#22c55e] hover:bg-[#16a34a] text-white font-black text-xl sm:text-2xl px-10 sm:px-12 md:px-14 py-5 sm:py-6 rounded-full uppercase tracking-wider transition-all duration-300 hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-2 sm:gap-3 mx-auto"
+                className="w-full sm:w-auto bg-[#24A1DE] hover:bg-[#1E8FC7] text-white font-black text-xl sm:text-2xl px-10 sm:px-12 md:px-14 py-5 sm:py-6 rounded-full uppercase tracking-wider transition-all duration-300 hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-2 sm:gap-3 mx-auto"
               >
-                <FaWhatsapp className="w-6 h-6 sm:w-7 sm:h-7 flex-shrink-0" />
+                <Send className="w-6 h-6 sm:w-7 sm:h-7 flex-shrink-0" />
                 EMPEZAR AHORA
               </Button>
             </motion.div>

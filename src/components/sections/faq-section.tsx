@@ -6,24 +6,24 @@ import { CTAButton } from '../cta-button'
 
 const faqs = [
   {
-    question: 'O grupo é realmente gratuito?',
-    answer: 'Sim! É 100% gratuito. Não cobramos nada para você fazer parte do grupo e receber as análises.',
+    question: '¿El canal es realmente gratis?',
+    answer: '¡Sí! Es 100% gratis. No cobramos nada para que formes parte del canal VIP en Telegram y recibas los análisis.',
   },
   {
-    question: 'Preciso entender de futebol?',
-    answer: 'Não! Nossa equipe faz toda a análise técnica. Você só precisa seguir as recomendações que enviamos prontas no grupo.',
+    question: '¿Necesito entender de fútbol?',
+    answer: '¡No! Nuestro equipo realiza todo el análisis técnico. Solo necesitas seguir las recomendaciones que enviamos listas en nuestro Telegram oficial.',
   },
   {
-    question: 'Quanto preciso investir para começar?',
-    answer: 'Você pode começar com valores a partir de R$100. O importante é seguir a gestão de banca que ensinamos no grupo.',
+    question: '¿Cuánto necesito invertir para empezar?',
+    answer: 'Puedes empezar con valores a partir de $10.000 CLP. Lo importante es seguir la gestión de banca que enseñamos en el canal.',
   },
   {
-    question: 'É garantido que vou ganhar?',
-    answer: 'Apostas esportivas envolvem riscos. Não podemos garantir lucros, mas oferecemos análises profissionais baseadas em estatísticas e anos de experiência.',
+    question: '¿Está garantizado que voy a ganar?',
+    answer: 'Las apuestas deportivas conllevan riesgos. No podemos garantizar ganancias, pero ofrecemos análisis profesionales basados en estadísticas y años de experiencia.',
   },
   {
-    question: 'Posso sair do grupo quando quiser?',
-    answer: 'Sim! Você pode entrar e sair do grupo quando desejar, sem nenhum tipo de compromisso ou fidelidade.',
+    question: '¿Puedo salir del canal cuando quiera?',
+    answer: '¡Sí! Puedes entrar y salir del canal VIP en Telegram cuando desees, sin ningún tipo de compromiso o fidelidad.',
   },
 ]
 
@@ -45,7 +45,7 @@ export function FAQSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          Perguntas Frequentes
+          Preguntas Frecuentes
         </motion.h2>
 
         <div className="max-w-4xl mx-auto space-y-3">
