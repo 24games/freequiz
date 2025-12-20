@@ -15,6 +15,7 @@ import './index.css'
 const VALID_SLUGS = [
   'cr1-a1f1', 'cr2-a1f1', 'cr3-a1f1',
   'cr1-a1f2', 'cr2-a1f2', 'cr3-a1f2',
+  'cr1-a1f3', 'cr2-a1f3', 'cr3-a1f3',
   'cr1-a3f1', 'cr2-a3f1', 'cr3-a3f1',
   'cr1-a3f2', 'cr2-a3f2', 'cr3-a3f2',
   'cr1-a6f1', 'cr2-a6f1', 'cr3-a6f1',

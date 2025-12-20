@@ -22,6 +22,9 @@ export const TELEGRAM_URLS: Record<string, string> = {
   'cr1-a7f1': 'https://t.me/vicentetipstertelegrambot?start=w48325611',
   'cr2-a7f1': 'https://t.me/vicentetipstertelegrambot?start=w48325623',
   'cr3-a7f1': 'https://t.me/vicentetipstertelegrambot?start=w48325622',
+  'cr1-a1f3': 'https://t.me/vicentetipstertelegrambot?start=w48361953',
+  'cr2-a1f3': 'https://t.me/vicentetipstertelegrambot?start=w48362012',
+  'cr3-a1f3': 'https://t.me/vicentetipstertelegrambot?start=w48386056',
 }
 
 /**
@@ -41,5 +44,8 @@ export function getTelegramUrl(slug: string | null): string {
   
   return TELEGRAM_URLS[slug] || DEFAULT_TELEGRAM_URL
 }
+
+
+
 
 
