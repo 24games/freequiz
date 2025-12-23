@@ -14,16 +14,20 @@ if (!indexFile) {
 const filePath = path.join(distDir, indexFile);
 let content = fs.readFileSync(filePath, 'utf8');
 
-// Substituir a pergunta 1 - usando regex mais flexível para caracteres especiais
-content = content.replace(
-  /question:"[^"]*Ves[^"]*ftbol[^"]*regularmente[^"]*",options:\["[^"]*S[^"]*,[^"]*soy[^"]*fantico[^"]*","A veces","No mucho"\]/g,
-  'question:"¿Apostái seguido?",options:["Sí, me gusta","De repente","No mucho"]'
-);
+// Substituir a pergunta 1 - usando o padrão exato encontrado no arquivo
+// O arquivo tem caracteres especiais codificados, então precisamos usar o padrão exato
+const oldQuestionPattern1 = 'question:"Ves ftbol regularmente?",options:["S, soy fantico","A veces","No mucho"]';
+const newQuestion = 'question:"¿Apostái seguido?",options:["Sí, me gusta","De repente","No mucho"]';
 
-// Tentar também com caracteres exatos encontrados
+// Substituir usando o padrão exato
+if (content.includes(oldQuestionPattern1)) {
+  content = content.replace(oldQuestionPattern1, newQuestion);
+}
+
+// Também tentar com regex mais flexível para capturar variações de encoding
 content = content.replace(
-  /question:"Ves ftbol regularmente\?",options:\["S, soy fantico","A veces","No mucho"\]/g,
-  'question:"¿Apostái seguido?",options:["Sí, me gusta","De repente","No mucho"]'
+  /question:"[^"]*Ves[^"]*f[^"]*tbol[^"]*regularmente[^"]*",options:\["[^"]*S[^"]*,[^"]*soy[^"]*fan[^"]*tico[^"]*","A veces","No mucho"\]/g,
+  newQuestion
 );
 
 // Substituir a headline - remover "profesional de" e "análisis de fútbol" separado
